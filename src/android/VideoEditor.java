@@ -124,7 +124,6 @@ public class VideoEditor extends CordovaPlugin {
         final int height = options.optInt("height", 0);
         final int fps = options.optInt("fps", 24);
         final int videoBitrate = options.optInt("videoBitrate", 1000000); // default to 1 megabit
-        final long videoDuration = options.optLong("duration", 0) * 1000 * 1000;
 
         Log.d(TAG, "videoSrcPath: " + videoSrcPath);
 
@@ -240,7 +239,7 @@ public class VideoEditor extends CordovaPlugin {
                     float videoHeight = Float.parseFloat(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_VIDEO_HEIGHT));
 
                     MediaTranscoder.getInstance().transcodeVideo(fin.getFD(), outputFilePath,
-                            new CustomAndroidFormatStrategy(videoBitrate, fps, width, height), listener, videoDuration);
+                            new CustomAndroidFormatStrategy(videoBitrate, fps, width, height), listener);
 
                 } catch (Throwable e) {
                     Log.d(TAG, "transcode exception ", e);
